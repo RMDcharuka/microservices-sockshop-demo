@@ -137,3 +137,11 @@ output-virtualbox-iso
 terraform.tfstate
 terraform.tfstate.backup
 
+
+
+
+
+deploy/
+secrets/
+connection_aks.sh 
+

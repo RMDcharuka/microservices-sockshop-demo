@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: service-config
+  namespace: sock-shop
+data:
+  CARTS_MONGO_URL: mongodb://mongo-carts:27017/carts
+  USERS_MONGO_URL: mongodb://mongo-users:27017/users
+  ORDERS_MONGO_URL: mongodb://mongo-orders:27017/orders
+
+  DB_HOST: mysql
+  DB_PORT: "3306"
+  DB_NAME: socksdb
