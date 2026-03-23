@@ -40,13 +40,6 @@ resource "azurerm_kubernetes_cluster" "sockshop" {
   }
 }
 
-# Give AKS access to pull images from ACR
-resource "azurerm_role_assignment" "acr_pull" {
-  scope                = azurerm_container_registry.sockshop.id
-  role_definition_name = "AcrPull"
-  principal_id         = azurerm_kubernetes_cluster.sockshop.kubelet_identity[0].object_id
-}
-
 # ---------------resourcecosmos-databse
 resource "azurerm_cosmosdb_account" "mongo" {
   name                         = "${lower(var.cosmosdb_name_prefix)}-${random_integer.unique.result}"
@@ -73,8 +66,8 @@ resource "azurerm_cosmosdb_mongo_database" "mongo_db"  {
 }
 
 resource "azurerm_log_analytics_workspace" "workspace" {
-  name                = "monitoring-workspace"
-  location            = "koreacentral"
+  name                = "sockshop-monitoring-workspace"
+  location            = azurerm_resource_group.sockshop.location
   resource_group_name = azurerm_resource_group.sockshop.name
   sku                 = "PerGB2018"
   retention_in_days   = 30

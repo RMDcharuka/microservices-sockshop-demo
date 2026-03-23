@@ -21,6 +21,6 @@ spec:
         env:
         - name: MONGO_URL
           valueFrom:
-                configMapKeyRef:
-                  name: service-config
-                  key: CARTS_MONGO_URL
+            configMapKeyRef:
+              name: service-config
+              key: USERS_MONGO_URL
